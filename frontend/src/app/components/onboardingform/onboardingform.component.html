@@ -1,0 +1,132 @@
+<div class="container mt-5">
+    <h1>{{companyName}} Onboarding Form</h1>
+    <form>
+        <div class="form-group">
+            <label for="serviceProvider">Name of vendor/service provider</label>
+            <input type="text" name="serviceProvider" class="form-control" [formControl]="serviceProvider" id="serviceProvider" readonly>
+            <br>
+            <label for="venderConstitution">Constitution of vendor/service provider</label>
+            <input type="text" name="venderConstitution" class="form-control" [formControl]="venderConstitution" id="venderConstitution" readonly>
+
+            <br>
+            <label for="Indian_Foreign">Whether vendor/service provider is an Indian entity or foreign entity.</label>
+            <input type="text" name="Indian_Foreign" class="form-control" [formControl]="Indian_Foreign" id="Indian_Foreign" readonly>
+
+            <br>
+            <label for="Nature_scope">Nature/scope of services [please provide the full details point wise and including process as to how it is implemented].</label>
+            <input type="text" name="Nature_scope" class="form-control" [formControl]="Nature_scope" id="Nature_scope" readonly>
+
+            <br>
+            <label for="services_licensing">Please specify whether the Service Provider will provide only the services without any licensing of software products/tools or it is only for software products without services or for both.</label>
+            <input type="text" name="services_licensing" class="form-control" [formControl]="services_licensing" id="services_licensing" readonly>
+
+            <br>
+            <label for="source_BAGIC">If software purchase agreement Whether source code will be got by BAGIC or not.</label>
+            <input type="text" name="source_BAGIC" class="form-control" [formControl]="source_BAGIC" id="source_BAGIC" readonly>
+
+            <br>
+            <label for="on_offsite">Is the Service Provider provides its services with his employees come and work onsite of BAGIC servers or is it off site or both.</label>
+            <input type="text" name="on_offsite" class="form-control" [formControl]="on_offsite" id="on_offsite" readonly>
+
+            <br>
+            <label for="confidential_info">Do BAGIC share any Confidential Information to the Service Provider in the process of availing the Services.</label>
+            <input type="text" [formControl]="confidential_info" name="confidential_info" class="form-control" id="confidential_info">
+
+            <br>
+            <label for="NDA">If NDA whether both parties are sharing information or only we are sharing or only service provider is sharing the confidential information.</label>
+            <input type="text" name="NDA" class="form-control" [formControl]="NDA" id="NDA">
+
+            <br>
+            <label for="servers">If use of the servers of vendor/service provider is involved then whether or not the servicers are in India.</label>
+            <input type="text" name="servers" class="form-control" [formControl]="servers" id="servers" readonly>
+
+            <br>
+            <label for="approved">Commercials approved by competent authority or not and if approved details thereof with relevant mails.</label>
+            <input type="text" name="approved" class="form-control" [formControl]="approved" id="approved" readonly>
+
+            <br>
+            <label for="SOW">If apart from Agreement any SOW to be agreed, whether IT has vetted such SOW and given go ahead or not. If not please vet and give clearance on the SOW.</label>
+            <input type="text" name="SOW" class="form-control" [formControl]="SOW" id="SOW">
+
+            <br>
+            <label for="agreement_period">The period of the Agreement with vendor/service provider</label>
+            <input type="text" name="agreement_period" class="form-control" [formControl]="agreement_period" id="agreement_period" readonly>
+
+            <br>
+            <label for="terminate">Please inform is the period of the Agreement is locked without any right to terminate? If yes please send the competent authority’s approval. Please note that as per corporate governance guidelines, BAGIC have to have right to terminate the Agreement without any penalty and hence not having termination rights is contrary to IRDAI guidelines.</label>
+            <input type="text" name="terminate" class="form-control" [formControl]="terminate" id="terminate">
+
+            <br>
+            <label for="auto_renewal">Is any auto renewal of term of the Agreement is there and whether such auto renewal is agreed by competent authority.</label>
+            <input type="text" name="auto_renewal" class="form-control" [formControl]="auto_renewal" id="auto_renewal" readonly>
+
+            <br>
+            <label for="other_conditions">Are there any other specific conditions agreed with vendor/service provider? If yes please specify.</label>
+            <input type="text" name="other_conditions" class="form-control" [formControl]="other_conditions" id="other_conditions" readonly>
+
+            <br>
+            <mat-form-field color="accent" appearance="fill" [style.width.%]=100>
+                <mat-label>Exact date from which MOU will be valid (effective date)</mat-label>
+                <input matInput [formControl]="MOU_valid" [matDatepicker]="MOU1">
+                <mat-datepicker-toggle matSuffix [for]="MOU1"></mat-datepicker-toggle>
+                <mat-datepicker #MOU1></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <label for="MOU_period">Agreement/MOU is for what period?</label>
+            <input type="text" name="MOU_period" class="form-control" [formControl]="MOU_period" id="MOU_period">
+
+            <br>
+            <label for="signing_authority">Names of Signing authority to the agreement from tie up partner.</label>
+            <input type="text" name="signing_authority" class="form-control" [formControl]="signing_authority" id="signing_authority" readonly>
+
+            <br>
+            <label for="BAGIC_signing_authority">Names of Signing authority to the agreement (BAGIC) (Not below the role of City Head).</label>
+            <input type="text" name="BAGIC_signing_authority" class="form-control" [formControl]="BAGIC_signing_authority" id="BAGIC_signing_authority">
+
+            <br>
+            <label for="existing_agreement">Do we have any existing agreements with this party and if so copies of the same be provided.</label>
+            <input type="text" name="existing_agreement" class="form-control" [formControl]="existing_agreement" id="existing_agreement">
+
+            <br>
+            <label for="other_aspects">Any other aspects not covered above.</label>
+            <input type="text" name="other_aspects" class="form-control" [formControl]="other_aspects" id="other_aspects">
+
+            <br>
+            <hr>
+            <h2>Partner Details</h2>
+            <br>
+            <label for="company_name_address">Company Name and Address</label>
+            <input type="text" name="company_name_address" class="form-control" [formControl]="company_name_address" id="company_name_address">
+            <br>
+            <label for="spocName_mobile_email">Company Spoc Name, Mobile No & email id</label>
+            <input type="text" name="spocName_mobile_email" class="form-control" [formControl]="spocName_mobile_email" id="spocName_mobile_email">
+            <br>
+            <label for="itVenderNameAddress">IT Vendor Name and Address</label>
+            <input type="text" name="itVenderNameAddress" class="form-control" [formControl]="itVenderNameAddress" id="itVenderNameAddress" readonly>
+            <br>
+            <label for="itSpocMobileEmail">IT Spoc Name, Mobile No & email id</label>
+            <input type="text" name="itSpocMobileEmail" class="form-control" [formControl]="itSpocMobileEmail" id="itSpocMobileEmail" readonly>
+            <br>
+            <label for="itPlatform">IT platform to be used for development</label>
+            <input type="text" name="itPlatform" class="form-control" [formControl]="itPlatform" id="itPlatform" readonly>
+            <br>
+            <mat-form-field color="accent" appearance="fill" [style.width.%]=100>
+                <mat-label>Application Development Start Date</mat-label>
+                <input matInput [formControl]="start_date" [matDatepicker]="start">
+                <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                <mat-datepicker #start></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field color="accent" appearance="fill" [style.width.%]=100>
+                <mat-label>Application Development end Date</mat-label>
+                <input matInput [formControl]="end_date" [matDatepicker]="end">
+                <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                <mat-datepicker #end></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <label for="publicIP">Public ip address (UAT and Production)</label>
+            <input type="text" name="publicIP" class="form-control" [formControl]="publicIP" id="publicIP">
+            <button type="button" class="btn btn-primary mt-3" (click)="onBoard()">Submit</button>
+        </div>
+    </form>
+</div>

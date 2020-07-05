@@ -1,0 +1,139 @@
+<div class="text-center">
+  <button id="openCompany" data-toggle="modal" class="button btn btn-warning mt-3" data-target="#newCompanyModal">Create new Company</button>
+</div>
+<hr>
+
+<!-- New Company Modal -->
+<div class="modal" id="newCompanyModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">New Company</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label for="companyName">Company Name</label>
+                    <input [formControl]="companyName" type="text" name="companyName" class="form-control" id="companyName" placeholder="Enter Company Name..." required>
+                    <mat-error *ngIf="companyName.invalid && companyName.dirty">{{companyNameErrorMessage()}}</mat-error>
+                    <br>
+                    <label for="contactPerson">Contact Person</label>
+                    <input [formControl]="contactPerson" type="text" name="contactPerson" class="form-control" id="contactPerson" placeholder="Enter Contact Person..." required>
+                    <mat-error *ngIf="contactPerson.invalid && contactPerson.dirty">{{contactPersonErrorMessage()}}</mat-error>
+                    <br>
+                    <label for="contactEmail">Contact Email</label>
+                    <input [formControl]="contactEmail" type="email" name="contactEmail" class="form-control" id="contactEmail" placeholder="Enter Contact Email..." required>
+                    <mat-error *ngIf="contactEmail.invalid && contactEmail.dirty">{{contactEmailErrorMessage()}}</mat-error>
+                    <br>
+                    <label for="companyAddress">Company Address</label>
+                    <input [formControl]="companyAddress" type="text" name="companyAddress" class="form-control" id="companyAddress" placeholder="Enter Company Address..." required>
+                    <mat-error *ngIf="companyAddress.invalid && companyAddress.dirty">{{companyAddressErrorMessage()}}</mat-error>
+
+                    <br>
+                    <label>Products</label>
+
+                    <div *ngFor="let product of Products; let i=index" class="form-check">
+                        <input class="form-check-input" type="checkbox" [value]="product.value" [id]="product.name" (change)="onCheckboxChange($event)">
+                        <label class="form-check-label" for="{{product.name}}">{{product.name}}</label>
+                    </div>
+                    <mat-error *ngIf="this.products.controls['checkArray'].errors?.required">Product is required, select atleast one</mat-error>
+
+                </div>
+            </form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button [disabled]="(companyName.invalid) || (contactPerson.invalid) || (contactEmail.invalid) || (companyAddress.invalid) || (this.products.controls['checkArray'].errors?.required)" type="button" class="btn btn-primary" (click)="CreateCompany()">Create</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+</div>
+
+<div class="container text-center" *ngIf="!noOnboardedCompanies; else zero">
+  <h2>Onboarded Companies</h2>
+  <div class="row">
+    <div class="m-1 mx-auto" *ngFor="let company of onboardedCompanies">
+        <div class="card" data-toggle="modal" data-target="#CompanyModal" (click)="companyClick(company._id)">
+          <div class="card-body">
+            <h4 class="card-title"><a>{{company.companyName}}</a></h4>
+            <p class="card-text">{{company.contactPerson}}</p>
+            <p class="card-text">{{company.contactEmail}}</p>
+            <p class="card-text">{{company.address}}</p>
+            <ul *ngFor="let product of company.products">
+              <li>{{product}}</li>
+            </ul>
+          </div>
+        
+        </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #zero>
+  <div class="text-center">
+    <h1>No Onboarded Companies</h1>
+  </div>
+</ng-template>
+
+<!-- Company Modal -->
+<div class="modal" id="CompanyModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Company Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <p>Name of vendor/service provider: <strong>{{serviceProvider}}</strong></p><br>
+          <p>Constitution of vendor/service provider: <strong>{{venderConstitution}}</strong></p><br>
+          <p>Whether vendor/service provider is an Indian entity or foreign entity.: <strong>{{Indian_Foreign}}</strong></p><br>
+          <p>Nature/scope of services [please provide the full details point wise and including process as to how it is implemented].: <strong>{{Nature_scope}}</strong></p><br>
+          <p>Please specify whether the Service Provider will provide only the services without any licensing of software products/tools or it is only for software products without services or for both.: <strong>{{services_licensing}}</strong></p><br>
+          <p>If software purchase agreement Whether source code will be got by BAGIC or not.: <strong>{{source_BAGIC}}</strong></p><br>
+          <p>Is the Service Provider provides its services with his employees come and work onsite of BAGIC servers or is it off site or both.: <strong>{{on_offsite}}</strong></p><br>
+          <p>Do BAGIC share any Confidential Information to the Service Provider in the process of availing the Services.: <strong>{{confidential_info}}</strong></p><br>
+          <p>If NDA whether both parties are sharing information or only we are sharing or only service provider is sharing the confidential information.: <strong>{{NDA}}</strong></p><br>
+          <p>If use of the servers of vendor/service provider is involved then whether or not the servicers are in India.: <strong>{{servers}}</strong></p><br>
+          <p>Commercials approved by competent authority or not and if approved details thereof with relevant mails.: <strong>{{approved}}</strong></p><br>
+          <p>If apart from Agreement any SOW to be agreed, whether IT has vetted such SOW and given go ahead or not. If not please vet and give clearance on the SOW.: <strong>{{SOW}}</strong></p><br>
+          <p>The period of the Agreement with vendor/service provider: <strong>{{agreement_period}}</strong></p><br>
+          <p>Please inform is the period of the Agreement is locked without any right to terminate? If yes please send the competent authority’s approval. Please note that as per corporate governance guidelines, BAGIC have to have right to terminate the Agreement without any penalty and hence not having termination rights is contrary to IRDAI guidelines.: <strong>{{terminate}}</strong></p><br>
+          <p>Is any auto renewal of term of the Agreement is there and whether such auto renewal is agreed by competent authority.: <strong>{{auto_renewal}}</strong></p><br>
+          <p>Are there any other specific conditions agreed with vendor/service provider? If yes please specify.: <strong>{{other_conditions}}</strong></p><br>
+          <p>Exact date from which MOU will be valid (effective date): <strong>{{MOU_valid | date: 'fullDate'}}</strong></p><br>
+          <p>Agreement/MOU is for what period?: <strong>{{MOU_period}}</strong></p><br>
+          <p>Names of Signing authority to the agreement from tie up partner.: <strong>{{signing_authority}}</strong></p><br>
+          <p>Names of Signing authority to the agreement (BAGIC) (Not below the role of City Head).: <strong>{{BAGIC_signing_authority}}</strong></p><br>
+          <p>Do we have any existing agreements with this party and if so copies of the same be provided.: <strong>{{existing_agreement}}</strong></p><br>
+          <p>Any other aspects not covered above.: <strong>{{other_aspects}}</strong></p><br>
+          <h4>Partner Details</h4>
+          <p>Company Name and Address: <strong>{{company_name_address}}</strong></p><br>
+          <p>Company Spoc Name, Mobile No & email id: <strong>{{spocName_mobile_email}}</strong></p><br>
+          <p>IT Vendor Name and Address: <strong>{{itVenderNameAddress}}</strong></p><br>
+          <p>IT Spoc Name, Mobile No & email id: <strong>{{itSpocMobileEmail}}</strong></p><br>
+          <p>IT platform to be used for development: <strong>{{itPlatform}}</strong></p><br>
+          <p>Application Development Start Date: <strong>{{start_date | date: 'fullDate'}}</strong></p><br>
+          <p>Application Development end Date: <strong>{{end_date | date: 'fullDate'}}</strong></p><br>
+          <p>Public ip address (UAT and Production): <strong>{{publicIP}}</strong></p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
