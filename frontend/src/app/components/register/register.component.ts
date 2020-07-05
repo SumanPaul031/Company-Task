@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   };
   errorMessage: string;
 
-  @ViewChild('registerForm', {static: false}) registerForm: NgForm;
+  @ViewChild('registerForm') registerForm: NgForm;
 
   constructor(private router: Router, private authService: AuthService, private toastr: ToastrService) { }
 

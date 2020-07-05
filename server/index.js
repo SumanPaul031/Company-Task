@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const port = process.env.PORT || 3000;
+const path = require('path');
 
 const userRoutes = require('./api/routes/user');
 const companyRoutes = require('./api/routes/company');
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGO_URL_DEV, (err) => {
+mongoose.connect(process.env.MONGO_URL_DEV, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
     if(err){
         console.log('Could Not connect to database ', err);
     } else{

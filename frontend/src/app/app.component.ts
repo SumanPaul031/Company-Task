@@ -11,7 +11,8 @@ import { share } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Onboard Company';
+  
+  title = 'Company Onboard';
   user$: Observable<User>;
   user: User;
 

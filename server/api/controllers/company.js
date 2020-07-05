@@ -88,8 +88,8 @@ exports.createCompany = (req, res, next) => {
                             from: 'Company',
                             to: result.contactEmail,
                             subject: 'Company Onboarding link',
-                            text: 'Hello '+result.contactPerson+'.\n\nPlease click on the link below to fill the onboarding Form.\n\nhttp://localhost:4200/onboardingform/'+result._id,
-                            html: 'Hello <strong>'+result.contactPerson+'</strong>.<br><br>Please click on the link below to fill the onboarding Form.<br><br><a href="http://localhost:4200/onboardingform/'+result._id+'">http://localhost:4200/onboardingform/</a>'
+                            text: 'Hello '+result.contactPerson+'.\n\nPlease click on the link below to fill the onboarding Form.\n\nhttp://localhost:3000/onboardingform/'+result._id,
+                            html: 'Hello <strong>'+result.contactPerson+'</strong>.<br><br>Please click on the link below to fill the onboarding Form.<br><br><a href="http://localhost:3000/onboardingform/'+result._id+'">http://localhost:3000/onboardingform/</a>'
                         };
                         authData.sendMail(email, (err, info) => {
                             if (err) {

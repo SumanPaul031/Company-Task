@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CompanyService } from 'src/app/services/company.service';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-onboardingform',

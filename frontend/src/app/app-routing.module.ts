@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OnboardingComponent } from './components/onboarding/onboarding.component';
+import { AuthGuard } from './services/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthGuard } from './services/auth.guard';
 import { OnboardingformComponent } from './components/onboardingform/onboardingform.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { tap, switchMap } from 'rxjs/operators';
 import { User } from '../models/user';
+import { tap, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(form: {email: string; password: string}): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiUrl}/api/users/login`, form)
+    return this.http.post<LoginResponse>(`/api/users/login`, form)
       .pipe(
         tap(response => {
           this.user$.next(response.user);
@@ -26,7 +25,7 @@ export class AuthService {
   }
 
   register(form: {email: string; password: string; name: string}) {
-    return this.http.post(`${environment.apiUrl}/api/users/signup`, form);
+    return this.http.post(`/api/users/signup`, form);
   }
 
   getCurrentUser(): Observable<User> {
@@ -49,7 +48,7 @@ export class AuthService {
   }
 
   fetchCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${environment.apiUrl}/api/users/current-user`)
+    return this.http.get<User>(`/api/users/current-user`)
       .pipe(
         tap(user => {
           this.user$.next(user);
@@ -60,7 +59,7 @@ export class AuthService {
   refreshToken(): Observable<{accessToken: string; refreshToken: string}> {
     const refreshToken = localStorage.getItem('refreshToken');
 
-    return this.http.post<{accessToken: string; refreshToken: string}>(`${environment.apiUrl}/api/users/refresh-token`,
+    return this.http.post<{accessToken: string; refreshToken: string}>(`/api/users/refresh-token`,
       {
         refreshToken
       }).pipe(

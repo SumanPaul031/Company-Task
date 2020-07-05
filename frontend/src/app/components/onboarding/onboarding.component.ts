@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user';
+import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
-import { CompanyService } from 'src/app/services/company.service';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { CompanyService } from '../../services/company.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.component.html',
   styleUrls: ['./onboarding.component.css']
 })
-export class OnboardingComponent implements OnInit, OnDestroy {
+export class OnboardingComponent implements OnInit {
 
   companyName = new FormControl('', [Validators.required]);
   contactPerson = new FormControl('', [Validators.required]);

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router, ParamMap, ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   returnUrl: string;
 
-  @ViewChild('loginForm', {static: false}) loginForm: NgForm;
+  @ViewChild('loginForm') loginForm: NgForm;
 
   constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private toastr: ToastrService) { }
 

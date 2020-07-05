@@ -21,6 +21,7 @@
     "mongoose": "^5.9.21",
     "mongoose-immutable-plugin": "^1.0.3",
     "nodemailer": "^6.4.10",
+    "nodemon": "^2.0.4",
     "password-hash": "^1.2.2"
   }
 }
