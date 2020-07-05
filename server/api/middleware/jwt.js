@@ -5,12 +5,12 @@ const User = require('../models/user');
 const jwtSecretString = 'suman';
 
 function getAccessToken(payload) {
-  return jwt.sign({user: payload}, jwtSecretString, { expiresIn: '5s' });
+  return jwt.sign({user: payload}, jwtSecretString, { expiresIn: '1h' });
 }
 
 function getRefreshToken(payload) {
 
-  const newRefreshToken = jwt.sign({user: payload}, jwtSecretString, { expiresIn: '7d' });
+  const newRefreshToken = jwt.sign({user: payload}, jwtSecretString, { expiresIn: '7h' });
 
   Tokens.findOne({ userId: payload._id }, (err, tokens) => {
       if(err){
@@ -101,7 +101,7 @@ function refreshToken(sentToken) {
 }
 
 function getUpdatedRefreshToken(oldRefreshToken, payload) {
-  const newRefreshToken = jwt.sign({user: payload}, jwtSecretString, { expiresIn: '7d' });
+  const newRefreshToken = jwt.sign({user: payload}, jwtSecretString, { expiresIn: '7h' });
 
   User.findOne({ _id: payload._id }, (err, user) => {
       if(err){
