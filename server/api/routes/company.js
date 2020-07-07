@@ -14,4 +14,6 @@ router.post('/:companyId', checkAuths.userAuth, CompanyController.onboardCompany
 
 router.get('/onboarded/:companyId', checkAuths.userAuth, CompanyController.getOnboardedCompany);
 
+router.delete('/:companyId', checkAuths.userAuth, CompanyController.deleteCompany);
+
 module.exports = router;

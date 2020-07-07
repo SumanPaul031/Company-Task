@@ -174,6 +174,54 @@ exports.getOnboardedCompany = (req, res, next) => {
     }
 }
 
+exports.deleteCompany = (req, res, next) => {
+    if(!req.params.companyId){
+        return res.status(400).json({
+            message: 'Please provide Company Id'
+        });
+    } else{
+        Company.findOne({ _id: req.params.companyId }, (err, company) => {
+            if(err){
+                return res.status(500).json(err);
+            } else{
+                if(!company){
+                    return res.status(404).json({
+                        message: 'No Company Found with that Id'
+                    });
+                } else{
+                    Onboard.findOne({ company: req.params.companyId }, (err, onboard) => {
+                        if(err){
+                            return res.status(500).json(err);
+                        } else{
+                            if(!onboard){
+                                return res.status(404).json({
+                                    message: 'No Onboarded Company Found with that Id'
+                                })
+                            } else{
+                                onboard.remove((err) => {
+                                    if(err){
+                                        return res.status(500).json(err);
+                                    } else{
+                                        company.remove((err) => {
+                                            if(err){
+                                                return res.status(500).json(err);
+                                            } else{
+                                                return res.status(200).json({
+                                                    message: 'Company Deleted Successfully'
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        }
+                    })                    
+                }
+            }
+        })
+    }
+}
+
 function createCompany(companyName, contactPerson, contactEmail, address, products) {
     return new Company({
         companyName,

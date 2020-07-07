@@ -35,6 +35,7 @@ export class OnboardingComponent implements OnInit {
   noOnboardedCompanies: boolean;
   onboardedCompanies = [];
   selectedCompany;
+  companyIdForDelete;
 
   // Onboarded Company Details
   serviceProvider;
@@ -214,6 +215,18 @@ export class OnboardingComponent implements OnInit {
       console.log(err.error);
       this.toastr.error(err.error.message, 'Failure');
     });
+  }
+
+  selectedCompanyforDelete(id: string){
+    this.companyIdForDelete = id;
+  }
+
+  deleteCompany(){
+    this.companyService.deleteCompany(this.companyIdForDelete).subscribe((res: HttpResponse<any>) => {
+      console.log(res);
+    }, (err: HttpErrorResponse) => {
+      console.log(err);
+    })
   }
 
 }

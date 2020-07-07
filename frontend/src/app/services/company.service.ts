@@ -27,4 +27,8 @@ export class CompanyService {
   getOnboardedCompany(companyId: string){
     return this.http.get(`/api/company/onboarded/${companyId}`);
   }
+
+  deleteCompany(companyId: string){
+    return this.http.delete(`/api/company/${companyId}`);
+  }
 }
